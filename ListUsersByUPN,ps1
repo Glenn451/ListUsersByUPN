@@ -1,0 +1,6 @@
+Get-ADUser -Filter {enabled -eq $true} -SearchBase 'ou=standard users,dc=norgrumfcu,dc=org' <#backtick#>`
+-Properties Name,SamAccountName,UserPrincipalName,EmailAddress,proxyAddresses |
+Where { $_.UserPrincipalName -ne $_.EmailAddress } |
+Select SamAccountName,UserPrincipalName,EmailAddress
+<# Export-Csv C:\Temp\usersToCheck.csv -NoTypeInformation#>
+wait 60
